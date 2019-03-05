@@ -25,6 +25,11 @@ class DropDownSelector extends React.Component<DropDownSelectorProps, DropDownSe
     }
 
     openSearchBox(e){
+        if (this.props.disabled)
+        {
+            return;
+        }
+
         let control = e.target;
         if (control.className === "selected")
         {
@@ -131,8 +136,8 @@ class DropDownSelector extends React.Component<DropDownSelectorProps, DropDownSe
         return (
             <React.Fragment>
                 <div className="wrapper" onBlur={this.onBlur} tabIndex={0}>
-                    <div className="selected" onClick={this.openSearchBox}>
-                        <input type="text" value={this.state.searchTerm} onChange={this.search} onKeyDown={this.keyDown} />
+                    <div className={this.props.disabled ? "selected disabled" : "selected"} onClick={this.openSearchBox}>
+                        <input type="text" value={this.state.searchTerm} onChange={this.search} disabled={this.props.disabled} onKeyDown={this.keyDown} />
                     </div>
                     <i className="fa fa-check"></i>
                     {this.state.searchBoxVisible &&

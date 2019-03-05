@@ -4,6 +4,7 @@ class DropDownSelectorProps
 {
     data: DropDownItem[]
     selectedItem: DropDownItem
+    disabled: boolean
     onItemSelected: any
 }
 

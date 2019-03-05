@@ -15,8 +15,20 @@ class CountrySelector extends React.Component<CountrySelectorProps, CountrySelec
         this.state = {
             selectedCountry: null,
             selectedState: null,
-            countries: []
+            countries: [],
+            disabled: this.props.disabled
         };
+
+        this.props.customElementApi.onDisabledChanged((disabled) => {
+            if (disabled)
+            {
+                this.disable();
+            }
+            else
+            {
+                this.enable();
+            }
+        });
 
         this.getCountryItems = this.getCountryItems.bind(this);
         this.getStateItems = this.getStateItems.bind(this);
@@ -25,6 +37,27 @@ class CountrySelector extends React.Component<CountrySelectorProps, CountrySelec
         this.countrySelected = this.countrySelected.bind(this);
         this.stateSelected = this.stateSelected.bind(this);
         this.setData = this.setData.bind(this);
+        this.disable = this.disable.bind(this);
+        this.enable = this.enable.bind(this);
+    }
+
+    disable()
+    {
+        this.setState(state => ({
+            selectedCountry: state.selectedCountry,
+            selectedState: state.selectedState,
+            countries: state.countries,
+            disabled: true
+        }));
+    }
+    enable()
+    {
+        this.setState(state => ({
+            selectedCountry: state.selectedCountry,
+            selectedState: state.selectedState,
+            countries: state.countries,
+            disabled: false
+        }));
     }
 
     countrySelected(countryItem: DropDownItem)
@@ -40,11 +73,12 @@ class CountrySelector extends React.Component<CountrySelectorProps, CountrySelec
         newState.selectedCountry = selectedCountry;
         newState.selectedState = null;
         newState.countries = this.state.countries;
+        newState.disabled = this.state.disabled;
 
         this.setState(newState);
 
         var kcData = new KCdata(selectedCountry.code, null);
-        this.props.setData(kcData);
+        this.props.customElementApi.setValue(JSON.stringify(kcData));
     }
     stateSelected(stateItem: DropDownItem)
     {
@@ -54,11 +88,12 @@ class CountrySelector extends React.Component<CountrySelectorProps, CountrySelec
         newState.selectedCountry = this.state.selectedCountry;
         newState.selectedState = selectedState;
         newState.countries = this.state.countries;
+        newState.disabled = this.state.disabled;
 
         this.setState(newState);
 
         var kcData = new KCdata(this.state.selectedCountry.code, selectedState.code);
-        this.props.setData(kcData);
+        this.props.customElementApi.setValue(JSON.stringify(kcData));
     }
     componentDidMount(){
         this.getCountries();
@@ -76,6 +111,7 @@ class CountrySelector extends React.Component<CountrySelectorProps, CountrySelec
 
         let newState = new CountrySelectorState();
         newState.countries = countries;
+        newState.disabled = this.state.disabled;
 
         this.setState(newState);
         this.setData(this.props.data);
@@ -127,6 +163,7 @@ class CountrySelector extends React.Component<CountrySelectorProps, CountrySelec
             }
 
             newState.countries = this.state.countries;
+            newState.disabled = this.state.disabled;
 
             this.setState(newState);
         }
@@ -139,6 +176,7 @@ class CountrySelector extends React.Component<CountrySelectorProps, CountrySelec
                 <DropDownSelector
                     data={this.getCountryItems()}
                     selectedItem={this.getCountryItem(this.state.selectedCountry)}
+                    disabled={this.state.disabled}
                     onItemSelected={this.countrySelected} />
                 {this.getStateItems().length > 0 &&
                     <React.Fragment>
@@ -146,6 +184,7 @@ class CountrySelector extends React.Component<CountrySelectorProps, CountrySelec
                         <DropDownSelector
                             data={this.getStateItems()}
                             selectedItem={this.getStateItem(this.state.selectedState)}
+                            disabled={this.state.disabled}
                             onItemSelected={this.stateSelected} />
                     </React.Fragment>}
             </React.Fragment>

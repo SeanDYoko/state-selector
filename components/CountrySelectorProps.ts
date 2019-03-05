@@ -2,6 +2,7 @@ import KCdata from './KCdata'
 
 class CountrySelectorProps{
     data: KCdata
-    setData: any
+    disabled: boolean
+    customElementApi: any
 }
 export default CountrySelectorProps
