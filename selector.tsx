@@ -11,8 +11,12 @@ const updateDataInCloud = debounce((data: KCdata) => {
 }, 300);
 
 CustomElement.init((element, _context) => {
-  const data = JSON.parse(element.value);
-  const kcData = new KCdata(data['countryCode'], data['stateCode']);
+  const data = element.value ? JSON.parse(element.value) : null;
+  let kcData = null;
+  if (data)
+  {
+    kcData = new KCdata(data['countryCode'], data['stateCode']);
+  }
   
   const components = (
     <CountrySelector data={kcData} disabled={element.disabled} customElementApi={CustomElement} />

@@ -149,6 +149,11 @@ class CountrySelector extends React.Component<CountrySelectorProps, CountrySelec
 
     setData(obj : KCdata)
     {
+        if (!obj)
+        {
+            return;
+        }
+
         let selectedCountry = this.state.countries.find(c => c.code === obj.countryCode);
         let selectedState = selectedCountry && selectedCountry.states && selectedCountry.states.length > 0 ? selectedCountry.states.find(s => s.code === obj.stateCode) : null;
 

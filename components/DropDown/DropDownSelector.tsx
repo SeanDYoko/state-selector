@@ -120,16 +120,13 @@ class DropDownSelector extends React.Component<DropDownSelectorProps, DropDownSe
     
     componentWillReceiveProps(props : DropDownSelectorProps)
     {
-        if (props.selectedItem !== this.state.selectedItem)
-        {
-            this.setState(state => ({
-                data: this.filterData(props.selectedItem.title),
-                selectedItem: props.selectedItem,
-                searchBoxVisible: state.searchBoxVisible,
-                searchTerm: props.selectedItem.title,
-                itemPosition: 0
-            }));
-        }
+        this.setState(state => ({
+            data: props.selectedItem ? this.filterData(props.selectedItem.title) : props.data,
+            selectedItem: props.selectedItem ? props.selectedItem : null,
+            searchBoxVisible: state.searchBoxVisible,
+            searchTerm: props.selectedItem ? props.selectedItem.title : '',
+            itemPosition: 0
+        }));
     }
     
     render(){
