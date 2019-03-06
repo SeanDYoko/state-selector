@@ -1,6 +1,6 @@
 import { KCdata } from './KCdata';
 
-export class CountrySelectorProps {
+export interface CountrySelectorProps {
     data: KCdata;
     disabled: boolean;
     customElementApi: any;
