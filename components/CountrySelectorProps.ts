@@ -1,8 +1,7 @@
-import KCdata from './KCdata'
+import { KCdata } from './KCdata';
 
-class CountrySelectorProps{
-    data: KCdata
-    disabled: boolean
-    customElementApi: any
+export class CountrySelectorProps {
+    data: KCdata;
+    disabled: boolean;
+    customElementApi: any;
 }
-export default CountrySelectorProps
