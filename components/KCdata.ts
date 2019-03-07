@@ -1,10 +1,4 @@
-class KCdata{
-    countryCode: string
-    stateCode: string
-
-    constructor(countryCode: string, stateCode: string){
-        this.countryCode = countryCode;
-        this.stateCode = stateCode;
-    }
+export interface KCdata {
+    countryCode: string;
+    stateCode: string;
 }
-export default KCdata

@@ -1,19 +1,18 @@
-import React from 'react'
-import Highlight from '../Highlight/Highlight'
-import SearchBoxItemProps from './SearchBoxItemProps'
+import React from 'react';
+import Highlight from '../Highlight/Highlight';
+import SearchBoxItemProps from './SearchBoxItemProps';
 
-class SearchBoxItem extends React.Component<SearchBoxItemProps, any>
-{
+class SearchBoxItem extends React.Component<SearchBoxItemProps, any> {
     constructor(props) {
         super(props);
         this.setItem = this.setItem.bind(this);
     }
 
-    setItem(){
+    setItem() {
         this.props.onSelect(this.props.id);
     }
 
-    render(){
+    render() {
         return (
         <li onMouseDown={this.setItem} className={this.props.highlight ? 'highlight' : ''}>
             <Highlight highlight={this.props.searchTerm} text={this.props.name} />
@@ -22,4 +21,4 @@ class SearchBoxItem extends React.Component<SearchBoxItemProps, any>
     }
 }
 
-export default SearchBoxItem
+export default SearchBoxItem;
