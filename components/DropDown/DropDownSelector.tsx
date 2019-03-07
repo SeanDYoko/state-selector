@@ -5,6 +5,8 @@ import DropDownSelectorState from './DropDownSelectorState';
 import DropDownItem from './DropDownItem';
 
 class DropDownSelector extends React.Component<DropDownSelectorProps, DropDownSelectorState> {
+    container: any;
+
     constructor(props) {
         super(props);
         this.state = {
@@ -102,7 +104,12 @@ class DropDownSelector extends React.Component<DropDownSelectorProps, DropDownSe
 
         this.props.onItemSelected(selectedItem);
     }
-    onBlur() {
+    onBlur(e) {
+        if (e.relatedTarget && e.relatedTarget == this.container)
+        {
+            return;
+        }
+
         this.setState(state => ({
             data: state.data,
             selectedItem: state.selectedItem,
@@ -127,7 +134,7 @@ class DropDownSelector extends React.Component<DropDownSelectorProps, DropDownSe
     render() {
         return (
             <React.Fragment>
-                <div className="wrapper" onBlur={this.onBlur} tabIndex={0}>
+                <div className="wrapper" onBlur={this.onBlur} tabIndex={0} ref={(container) => { this.container = container; }}>
                     <div className={this.props.disabled ? 'selected disabled' : 'selected'} onClick={this.openSearchBox}>
                         <input type="text" value={this.state.searchTerm} onChange={this.search} disabled={this.props.disabled} onKeyDown={this.keyDown} />
                     </div>

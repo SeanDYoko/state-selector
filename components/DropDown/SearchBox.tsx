@@ -1,9 +1,12 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import SearchBoxItem from './SearchBoxItem'
 import SearchBoxProps from './SearchBoxProps'
 
 class SearchBox extends React.Component<SearchBoxProps, any>
 {
+    container: any;
+
     constructor(props) {
         super(props);
 
@@ -14,6 +17,15 @@ class SearchBox extends React.Component<SearchBoxProps, any>
     {
         let item = this.props.data.find(i => i.value === value);
         this.props.onSelectItem(item);
+    }
+
+    componentDidUpdate()
+    {
+        if (this.container)
+        {
+            let elementToScrollTo = this.container.children[this.props.itemPosition];
+            this.container.scrollTop = elementToScrollTo.offsetTop - 20;
+        }
     }
 
     render(){
@@ -38,7 +50,7 @@ class SearchBox extends React.Component<SearchBoxProps, any>
         return (
         <div className="search">
             {data.length > 0 &&
-            <ul>
+            <ul ref={(container) => { this.container = container; }}>
                 {data}
             </ul>}
         </div>);
