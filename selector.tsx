@@ -6,10 +6,6 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import { KCdata } from './components/KCdata';
 
-const updateDataInCloud = debounce((data: KCdata) => {
-  CustomElement.setValue(JSON.stringify(data));
-}, 300);
-
 CustomElement.init((element, _context) => {
   const data = element.value ? JSON.parse(element.value) : null;
   let kcData: KCdata = null;
