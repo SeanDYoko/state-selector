@@ -105,7 +105,7 @@ class DropDownSelector extends React.Component<DropDownSelectorProps, DropDownSe
         this.props.onItemSelected(selectedItem);
     }
     onBlur(e) {
-        if (e.relatedTarget && e.relatedTarget == this.container)
+        if (e.relatedTarget && e.relatedTarget === this.container)
         {
             return;
         }

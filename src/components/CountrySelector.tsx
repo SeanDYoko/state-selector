@@ -6,8 +6,8 @@ import { CountrySelectorState } from './CountrySelectorState';
 import { KCdata } from './KCdata';
 import { CountrySelectorProps } from './CountrySelectorProps';
 
-import Countries from '../data/countries';
-import States from '../data/states';
+const Countries = require('../data/countries.json');
+const States = require('../data/states.json');
 
 
 class CountrySelector extends React.Component<CountrySelectorProps, CountrySelectorState> {
