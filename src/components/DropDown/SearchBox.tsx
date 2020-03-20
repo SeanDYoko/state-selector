@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import SearchBoxItem from './SearchBoxItem'
 import SearchBoxProps from './SearchBoxProps'
 
@@ -44,9 +43,9 @@ class SearchBox extends React.Component<SearchBoxProps, any>
                     name={item.title}
                     searchTerm={this.props.searchTerm}
                     onSelect={this.selectItem}
-                    highlight={(this.props.itemPosition == index)} />));
+                    highlight={(this.props.itemPosition === index)} />));
         }
-        
+
         return (
         <div className="search">
             {data.length > 0 &&

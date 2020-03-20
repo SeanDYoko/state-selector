@@ -1,32 +1,32 @@
-# Country and state selector for Kentico Cloud
+# Country & State selector for Kentico Kontent
 
-This repository contains source code of Country and state selector custom element for Kentico Cloud
+[![Stack Overflow](https://img.shields.io/badge/Stack%20Overflow-ASK%20NOW-FE7A16.svg?logo=stackoverflow&logoColor=white)](https://stackoverflow.com/tags/kentico-kontent)
 
-# Use
+This repository contains the source code for the country and state selector custom element for Kentico Kontent.
 
-If you want to use Country and state selector in your project in Kentico Cloud, follow these steps:
+## Setup
 
-* In Kentico Cloud open Content models tab
-* Open / create a content model to which you want to add Country selector
-* Add **Custom element** content element
-* Open configuration of the content element
-* Use following URL as Hosted code URL (HTTPS): https://kentico.github.io/custom-element-samples/CountryStateSelector/country-state-selector.html
+1. Deploy the code to a secure public host
+    * See [deploying section](#Deploying) for a really quick option
+1. Follow the instructions in the [Kentico Kontent documentation](https://docs.kontent.ai/tutorials/develop-apps/integrate/integrating-your-own-content-editing-features#a-3--displaying-a-custom-element-in-kentico-kontent) to add the element to a content model.
+    * The `Hosted code URL` is where you deployed to in step 1
+    * No JSON parameters are necessary
 
-# Installation
+## Deploying
 
-If you want to adjust the implementation, first download [Kentico Cloud Custom Elements Devkit](https://github.com/kentico/custom-element-devkit). This repository should be positioned within `/client/custom-elements` folder. For further instructions on devkit implementation, please refer to [Custom Element Devkit README](https://github.com/Kentico/custom-element-devkit/blob/master/readme.md).
+Netlify has made this easy. If you click the deploy button below, it will guide you through the process of deploying it to Netlify and leave you with a copy of the repository in your GitHub account as well.
 
-## Get started
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/ondrabus/kc-country-selector)
 
-Prerequisites:
-* Node.js
-* git
+## Developing
 
+This is built as a React SPA. As such, the normal React development processes apply.
+
+After cloning the repo locally, you can get started with:
+
+```console
+yarn install
+yarn run start
 ```
-git clone https://github.com/Kentico/custom-element-devkit.git
-cd custom-element-devkit
-git clone https://github.com/ondrabus/kc-country-selector.git ./client/custom-elements/kc-country-selector
-npm install --save react react-dom
-npm start -- -hw
-```
-Browse: https://localhost:3000/custom-elements/kc-country-selector/wrap
+
+When you're ready to deploy, run the `yarn build` command and deploy the contents of the `build` folder.

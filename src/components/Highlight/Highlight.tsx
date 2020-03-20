@@ -1,10 +1,6 @@
 import React from 'react';
 
 class Highlight extends React.Component<any, any> {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         let prefix = '';
         let suffix = this.props.text;

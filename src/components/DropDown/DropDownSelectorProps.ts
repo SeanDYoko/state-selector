@@ -1,9 +1,9 @@
 import DropDownItem from './DropDownItem';
 
 class DropDownSelectorProps {
-    data: DropDownItem[];
-    selectedItem: DropDownItem;
-    disabled: boolean;
+    data!: DropDownItem[];
+    selectedItem!: DropDownItem;
+    disabled!: boolean;
     onItemSelected: any;
 }
 
